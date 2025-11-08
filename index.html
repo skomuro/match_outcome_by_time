@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      max-width: 700px;
+      max-width: 500px;
       margin: 2em auto;
       background: #f9fafb;
       color: #222;
@@ -81,7 +81,7 @@
     .score-group {
       flex: 1;
       margin: 0 0.5em;
-      min-width: 180px;
+      min-width: 100px;
     }
     .score-group b {
       display: block;
@@ -205,7 +205,7 @@
         const [h, a] = score.split("-").map(Number);
         const span = document.createElement("span");
         span.className = "score-label";
-        span.textContent = `${score} ${pct(v.prob)} (${v.count})`;
+        span.textContent = `${score}: ${pct(v.prob)} (${v.count})`;
 
         if (h > a) {
           span.style.background = "#e74c3c";

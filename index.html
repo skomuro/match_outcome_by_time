@@ -18,23 +18,39 @@
       color: #2c3e50;
     }
     .form-area {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5em;
-      margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    margin: 1em auto;
+    max-width: 500px;
     }
-    label {
-      white-space: nowrap;
+    .form-row {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* ← これが重要！縦位置を揃える */
+    width: 100%;
+    gap: 0.5em;
     }
-    input[type="number"] {
-      width: 5em;
+
+    .form-row label {
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+    font-weight: bold;
+    line-height: 1.5; /* ← 高さを揃えるために調整可能 */
+    }
+
+    .form-row input[type="number"] {
+    width: 100px;
+    text-align: center;
+    line-height: 1.5;
+    padding: 0.4em 0.6em;
     }
     input, button {
       font-size: 1em;
       padding: 0.5em 0.8em;
-      margin: 0.3em;
+      margin: 0.3em 0;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
@@ -65,6 +81,7 @@
     .score-group {
       flex: 1;
       margin: 0 0.5em;
+      min-width: 180px;
     }
     .score-group b {
       display: block;
@@ -90,18 +107,26 @@
     }
   </style>
 </head>
+
 <body>
   <h1>スコア状況から試合結果を表示</h1>
-
-  <div class="form-area">
-    <label>経過時間（分）:</label>
+<div class="form-area">
+  <div class="form-row">
+    <label for="minute"> 経過時間（分）:</label>
     <input type="number" id="minute" min="0" max="90" value="45" />
-    <label>ホーム:</label>
-    <input type="number" id="home" min="0" value="1" />
-    <label>アウェイ:</label>
+  </div>
+  <div class="form-row">
+    <label for="home"> ホーム得点数:</label>
+    <input type="number" id="home" min="0" value="0" />
+  </div>
+  <div class="form-row">
+    <label for="away">アウェイ得点数:</label>
     <input type="number" id="away" min="0" value="0" />
+  </div>
+  <div class="form-row">
     <button onclick="showResult()">結果を表示</button>
   </div>
+</div>
 
   <div id="result" style="display:none;">
     <h2 id="title"></h2>
